@@ -19,6 +19,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.dxvampi = import ./home;
+            home-manager.backupFileExtension = "backup";
           }
         ];
       };
