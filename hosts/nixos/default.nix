@@ -1,0 +1,87 @@
+{ config, pkgs, ... }:
+
+{
+  imports = [
+    ./hardware-configuration.nix
+
+    ../../modules/audio.nix
+    ../../modules/bluetooth.nix
+    ../../modules/hyprland.nix
+    ../../modules/nvidia.nix
+    ../../modules/sddm.nix
+  ];
+
+  # Bootloader
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Red
+  networking.hostName = "nixos";
+  networking.networkmanager.enable = true;
+
+  # Zona horaria y locale
+  time.timeZone = "Europe/Madrid";
+  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "es_ES.UTF-8";
+    LC_IDENTIFICATION = "es_ES.UTF-8";
+    LC_MEASUREMENT = "es_ES.UTF-8";
+    LC_MONETARY = "es_ES.UTF-8";
+    LC_NAME = "es_ES.UTF-8";
+    LC_NUMERIC = "es_ES.UTF-8";
+    LC_PAPER = "es_ES.UTF-8";
+    LC_TELEPHONE = "es_ES.UTF-8";
+    LC_TIME = "es_ES.UTF-8";
+  };
+
+  # Teclado
+  services.xserver.enable = true;
+  services.xserver.xkb = {
+    layout = "es";
+    variant = "";
+  };
+  console.keyMap = "es";
+
+  # Escritorio
+  services.desktopManager.plasma6.enable = true;
+
+  # Impresión
+  services.printing.enable = true;
+
+  # Usuario
+  users.users."dxvampi" = {
+    isNormalUser = true;
+    description = "dxvampi";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = with pkgs; [
+      kdePackages.kate
+    ];
+  };
+
+  # Paquetes
+  nixpkgs.config.allowUnfree = true;
+  programs.firefox.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    neovim
+    wget
+    git
+    zsh
+    fastfetch
+    eza
+    kitty
+    nautilus
+    librewolf
+    pear-desktop
+    vscodium
+    mpv
+    yazi
+
+    nerd-fonts.jetbrains-mono
+  ];
+
+  system.stateVersion = "26.05";
+}
