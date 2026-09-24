@@ -12,7 +12,6 @@
     slurp
     wl-clipboard
     hyprpolkitagent
-    brightnessctl
     playerctl
     pavucontrol
   ];
