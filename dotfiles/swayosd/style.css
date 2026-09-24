@@ -1,0 +1,17 @@
+* {
+    border-radius: 0;
+}
+
+window#osd {
+    background-color: #1e1e2e;
+}
+
+image,
+label {
+    color: #cdd6f4;
+}
+
+progress,
+segment.active {
+    background-color: #cdd6f4;
+}

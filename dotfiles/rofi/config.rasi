@@ -1,0 +1,145 @@
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    display-drun: "Apps";
+    display-run: "Run";
+    display-window: "Windows";
+    drun-display-format: "{name}";
+    font: "JetBrainsMono Nerd Font 11";
+}
+
+* {
+    bg:         #1e1e2e;
+    bg-alt:     #181825;
+    surface:    #313244;
+    overlay:    #6c7086;
+
+    text:       #cdd6f4;
+    subtext:    #a6adc8;
+
+    lavender:   #b4befe;
+    mauve:      #cba6f7;
+    blue:       #89b4fa;
+
+    background-color: transparent;
+    text-color: @text;
+}
+
+window {
+    width: 700px;
+    border: 2px;
+    border-color: @lavender;
+    border-radius: 12px;
+    background-color: @bg;
+    padding: 20px;
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+    spacing: 16px;
+}
+
+inputbar {
+    children: [ prompt, entry ];
+    background-color: @bg-alt;
+    border-radius: 8px;
+    padding: 12px 16px;
+}
+
+prompt {
+    text-color: @lavender;
+    padding: 0 10px 0 0;
+}
+
+entry {
+    placeholder: "Buscar...";
+    placeholder-color: @overlay;
+}
+
+listview {
+    columns: 1;
+    lines: 8;
+    fixed-height: false;
+    spacing: 4px;
+    scrollbar: false;
+}
+
+element {
+    orientation: horizontal;
+    padding: 10px;
+    border-radius: 8px;
+    spacing: 12px;
+    background-color: transparent;
+    text-color: @text;
+}
+
+element normal {
+    background-color: transparent;
+    text-color: @text;
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @text;
+}
+
+element normal.urgent {
+    background-color: transparent;
+    text-color: @text;
+}
+
+element normal.active {
+    background-color: transparent;
+    text-color: @text;
+}
+
+element selected {
+    background-color: @surface;
+    text-color: @lavender;
+}
+
+element selected.normal {
+    background-color: @surface;
+    text-color: @lavender;
+}
+
+element selected.urgent {
+    background-color: @surface;
+    text-color: @lavender;
+}
+
+element selected.active {
+    background-color: @surface;
+    text-color: @lavender;
+}
+
+element alternate {
+    background-color: transparent;
+    text-color: @text;
+}
+
+element alternate.normal {
+    background-color: transparent;
+    text-color: @text;
+}
+
+element alternate.urgent {
+    background-color: transparent;
+    text-color: @text;
+}
+
+element alternate.active {
+    background-color: transparent;
+    text-color: @text;
+}
+
+element urgent {
+    background-color: transparent;
+    text-color: @text;
+}
+
+element-text {
+    vertical-align: 0.5;
+    text-color: inherit;
+    background-color: transparent;
+}
