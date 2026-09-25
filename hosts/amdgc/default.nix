@@ -12,7 +12,7 @@
   ];
 
   let
-    settings = import ../../config.nix
+    settings = import ../../config.nix;
   in
 
   # Bootloader

@@ -1,3 +1,7 @@
+let
+  settings = import ./config.nix;
+in
+
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
@@ -20,7 +24,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "backup";
-              home-manager.users.dxvampi = import ./home;
+              home-manager.users.${settings.username} = import ./home;
             }
           ];
         };
@@ -34,7 +38,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "backup";
-              home-manager.users.dxvampi = import ./home;
+              home-manager.users.${settings.username} = import ./home;
             }
           ];
         };
@@ -48,7 +52,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "backup";
-              home-manager.users.dxvampi = import ./home;
+              home-manager.users.${settings.username} = import ./home;
             }
           ];
         };

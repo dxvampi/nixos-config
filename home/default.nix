@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  settings = import ../config.nix;
+in
 {
   imports = [
     ./hyprland.nix
@@ -10,7 +13,7 @@
     ./gpg.nix
   ];
 
-  _module.args.dotfiles = "/home/dxvampi/nixos-config/dotfiles";
+  _module.args.dotfiles = "/home/${settings.username}/nixos-config/dotfiles";
 
   home.stateVersion = "26.05";
 }
