@@ -96,6 +96,35 @@ ls -l ~/.config/ | grep -E "hypr|waybar|rofi|swayosd|kitty"
 
 The symlinks should resolve (following the chain) to `~/nixos-config/dotfiles/`.
 
+### 7. Post-install problems/tips
+
+Installing a new package can be done by going to `hosts/<chosen-folder>/default.nix` and adding a new line on:
+```lua
+environment.systemPackages = with pkgs; [
+    neovim
+    wget
+    # packages...
+    yourpackage # <- HERE
+    # more packages...
+  ];
+```
+
+If your monitor's refresh rate is wrong, position is wrong, etc. Modify `dotfiles/monitors.lua`.
+
+If you want to add new dotfiles to reproduce them, you need to do the following
+#### Adding new dotfiles
+1. Drag the dotfile to `dotfiles/whateveryouwant`
+2. Add a new .nix file to `home`
+3. Put this on the file:
+```lua
+{ config, dotfiles, ... }:
+
+{
+  xdg.configFile."whateveryouwant".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/whateveryouwant";
+}
+```
+4. Import it on `default.nix`
+
 ## Subsequent rebuilds
 
 ```bash
@@ -103,16 +132,6 @@ cd ~/nixos-config
 git pull
 sudo nixos-rebuild switch --flake .#<config-name>
 ```
-
-## GPG
-
-After the first rebuild, generate your key if you don't already have one:
-
-```bash
-gpg --full-generate-key
-```
-
-The passphrase prompt appears via rofi (`pinentry-rofi`), configured in `home/gpg.nix`.
 
 ## Wallpaper / assets
 
@@ -124,6 +143,5 @@ hl.exec_cmd("swaybg -m stretch -i $HOME/nixos-config/assets/clouds-3.png")
 
 ## Notes
 
-- Assumes the user is always `dxvampi` across machines.
 - Editing files under `dotfiles/` takes effect immediately, no rebuild or restart required, since they are symlinked directly to the repo.
 - A system-level change (anything under `modules/` or `hosts/`) always requires a rebuild.
