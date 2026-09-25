@@ -7,6 +7,7 @@
     ./rofi.nix
     ./swayosd.nix
     ./waybar.nix
+    ./gpg.nix
   ];
 
   _module.args.dotfiles = "/home/dxvampi/nixos-config/dotfiles";
