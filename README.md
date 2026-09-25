@@ -109,7 +109,9 @@ environment.systemPackages = with pkgs; [
   ];
 ```
 
-If your monitor's refresh rate is wrong, position is wrong, etc. Modify `dotfiles/monitors.lua`.
+If your monitor's refresh rate is wrong, position is wrong, etc. Modify `dotfiles/monitors.lua`. [See wiki](https://wiki.hypr.land/configuring/core/monitors/)
+
+If your keyboard layout isn't correct, modify `dotfiles/hyprland.lua`. [See wiki](https://wiki.hypr.land/configuring/core/config-options/#input)
 
 If you want to add new dotfiles to reproduce them, you need to do the following
 #### Adding new dotfiles
