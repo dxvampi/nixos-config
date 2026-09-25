@@ -69,6 +69,7 @@ in
   nixpkgs.config.allowUnfree = true;
   programs.firefox.enable = true;
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   environment.systemPackages = with pkgs; [
     neovim
     wget
@@ -84,6 +85,9 @@ in
     mpv
     yazi
     nixfmt
+    gparted-full
+    filezilla
+    kdePackages.partitionmanager
 
     nerd-fonts.jetbrains-mono
   ];
