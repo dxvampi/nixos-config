@@ -11,12 +11,16 @@
     ../../modules/sddm.nix
   ];
 
+  let
+    settings = import ../../config.nix
+  in
+
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Red
-  networking.hostName = "nixos";
+  networking.hostName = settings.hostname;
   networking.networkmanager.enable = true;
 
   # Zona horaria y locale
@@ -49,9 +53,9 @@
   services.printing.enable = true;
 
   # Usuario
-  users.users."dxvampi" = {
+  users.users.${settings.username} = {
     isNormalUser = true;
-    description = "dxvampi";
+    description = settings.username;
     extraGroups = [
       "networkmanager"
       "wheel"

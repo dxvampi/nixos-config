@@ -1,0 +1,4 @@
+{
+  username = "dxvampi";
+  hostname = "nixos";
+}
