@@ -71,6 +71,11 @@ sudo nixos-generate-config --show-hardware-config > hosts/<chosen-folder>/hardwa
 
 This file is unique per machine (disk UUIDs, kernel modules) and is never shared between machines.
 
+### 4. Define variables
+By default the username and hostname are `dxvampi@nixos`
+
+To change this, you just need to modify the `~/nixos-config/config.nix`
+
 ### 5. Rebuild
 
 Run this command:
