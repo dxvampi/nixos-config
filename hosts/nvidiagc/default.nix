@@ -7,7 +7,7 @@
     ../../modules/audio.nix
     ../../modules/bluetooth.nix
     ../../modules/hyprland.nix
-    ../../modules/nvidia.nix
+    ../../modules/gpu-nvidia.nix
     ../../modules/sddm.nix
   ];
 
