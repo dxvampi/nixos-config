@@ -9,7 +9,6 @@
     ../../modules/hyprland.nix
     ../../modules/nvidia.nix
     ../../modules/sddm.nix
-    ../../modules/gpg.nix
   ];
 
   # Bootloader
