@@ -40,6 +40,7 @@ hl.monitor({
 -------------------
 
 hl.on("hyprland.start", function()
+	hl.exec_cmd("swaybg -m stretch -i $HOME/nixos-config/assets/clouds-3.png")
 	hl.exec_cmd("waybar")
 	hl.exec_cmd("swayosd-server")
 	hl.exec_cmd("/usr/lib/hyprpolkitagent/hyprpolkitagent")
