@@ -3,6 +3,7 @@
 let
   settings = import ../config.nix;
 in
+
 {
   imports = [
     ./hyprland.nix

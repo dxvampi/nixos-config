@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
 
+let
+  settings = import ../../config.nix;
+in
+
 {
   imports = [
     ./hardware-configuration.nix
@@ -10,10 +14,6 @@
     ../../modules/gpu-intel.nix
     ../../modules/sddm.nix
   ];
-
-  let
-    settings = import ../../config.nix;
-  in
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
