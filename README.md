@@ -71,7 +71,7 @@ sudo nixos-generate-config --show-hardware-config > hosts/<chosen-folder>/hardwa
 
 This file is unique per machine (disk UUIDs, kernel modules) and is never shared between machines.
 
-### 4. Rebuild
+### 5. Rebuild
 
 Run this command:
 ```bash
@@ -82,7 +82,7 @@ Where `<config-name>` is one of: `nvidiagc`, `amdgc`, `intelgc` (matches the `ho
 
 Home Manager will automatically rename any pre-existing dotfiles in `~/.config` to `<file>.backup` during the first activation, so there's no need to remove them manually beforehand.
 
-### 5. Verify
+### 6. Verify
 
 ```bash
 systemctl status home-manager-dxvampi.service
@@ -120,6 +120,5 @@ hl.exec_cmd("swaybg -m stretch -i $HOME/nixos-config/assets/clouds-3.png")
 ## Notes
 
 - Assumes the user is always `dxvampi` across machines.
-- If the repo is private, `git clone` over HTTPS will prompt for authentication — use SSH or a token as needed.
-- Editing files under `dotfiles/` takes effect immediately, no rebuild required, since they are symlinked directly to the repo.
+- Editing files under `dotfiles/` takes effect immediately, no rebuild or restart required, since they are symlinked directly to the repo.
 - A system-level change (anything under `modules/` or `hosts/`) always requires a rebuild.
