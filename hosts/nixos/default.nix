@@ -79,7 +79,7 @@
     vscodium
     mpv
     yazi
-    gpg
+    gnupg
     nixfmt
 
     nerd-fonts.jetbrains-mono
