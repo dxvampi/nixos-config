@@ -1,5 +1,5 @@
 { config, dotfiles, ... }:
 
 {
-  xdg.configFile."kitty".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/rofi";
+  xdg.configFile."kitty".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/kitty";
 }
