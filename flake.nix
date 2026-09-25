@@ -1,8 +1,8 @@
-let
-  settings = import ./config.nix;
-in
-
 {
+  let
+    settings = import ./config.nix;
+  in
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     home-manager = {
