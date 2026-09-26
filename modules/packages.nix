@@ -13,6 +13,7 @@
     eza
     btop
     yazi
+    gnupg
 
     # Dev
     vscodium
@@ -33,5 +34,8 @@
 
     # Fonts/Other
     nerd-fonts.jetbrains-mono
+
+    # Authentication
+    inputs.bb-auth.packages.${pkgs.system}.default
   ];
 }

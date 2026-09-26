@@ -1,5 +1,10 @@
 {
   inputs = {
+
+    bb-auth = {
+      url = "github:anthonyhab/bb-auth";
+    };
+
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     home-manager = {
