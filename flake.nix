@@ -15,31 +15,22 @@
 
   outputs =
     { nixpkgs, ... }@inputs:
+    let
+      mkHost =
+        name:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs name; };
+
+          modules = [
+            ./hosts/${name}
+          ];
+        };
+    in
     {
       nixosConfigurations = {
-        nvidiagc = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-
-          modules = [
-            ./hosts/nvidiagc
-          ];
-        };
-
-        amdgc = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-
-          modules = [
-            ./hosts/amdgc
-          ];
-        };
-
-        intelgc = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-
-          modules = [
-            ./hosts/intelgc
-          ];
-        };
+        nvidiagc = mkHost "nvidiagc";
+        amdgc = mkHost "amdgc";
+        intelgc = mkHost "intelgc";
       };
     };
 }

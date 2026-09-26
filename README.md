@@ -72,9 +72,9 @@ sudo nixos-generate-config --show-hardware-config > hosts/<chosen-folder>/hardwa
 This file is unique per machine (disk UUIDs, kernel modules) and is never shared between machines.
 
 ### 4. Define variables
-By default the username and hostname are `dxvampi@nixos`
+By default the username is `dxvampi`. The hostname is set automatically from the chosen host folder (`nvidiagc`, `amdgc` or `intelgc`), so each machine gets its own name on the network.
 
-To change this, you just need to modify the `~/nixos-config/config.nix`
+To change the username, modify `~/nixos-config/config.nix`
 
 ### 5. Rebuild
 
@@ -91,7 +91,7 @@ Home Manager will automatically rename any pre-existing dotfiles in `~/.config` 
 
 ```bash
 systemctl status home-manager-dxvampi.service
-ls -l ~/.config/ | grep -E "hypr|waybar|rofi|swayosd|kitty"
+ls -l ~/.config/ | grep -E "hypr|noctalia|rofi|kitty"
 ```
 
 The symlinks should resolve (following the chain) to `~/nixos-config/dotfiles/`.

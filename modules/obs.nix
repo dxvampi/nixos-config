@@ -1,19 +1,27 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
-  obsWithCuda = pkgs.obs-studio.override {
-    cudaSupport = true;
-  };
+  cfg = config.custom.obs;
 in
 {
-  programs.obs-studio = {
-    enable = true;
-    enableVirtualCamera = true;
+  options.custom.obs.cudaSupport = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Compilar OBS Studio con soporte CUDA (solo tiene sentido en hosts con GPU NVIDIA).";
+  };
 
-    package = obsWithCuda;
+  config = {
+    programs.obs-studio = {
+      enable = true;
+      enableVirtualCamera = true;
 
-    plugins = with pkgs.obs-studio-plugins; [
-      obs-vkcapture
-    ];
+      package = pkgs.obs-studio.override {
+        cudaSupport = cfg.cudaSupport;
+      };
+
+      plugins = with pkgs.obs-studio-plugins; [
+        obs-vkcapture
+      ];
+    };
   };
 }

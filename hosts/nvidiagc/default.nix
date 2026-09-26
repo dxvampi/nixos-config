@@ -5,6 +5,7 @@
     ../global.nix
 
     ../../modules/gpu-nvidia.nix
-    ../../modules/obs.nix
   ];
+
+  custom.obs.cudaSupport = true;
 }

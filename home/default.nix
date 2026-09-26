@@ -9,8 +9,6 @@ in
     ./hyprland.nix
     ./kitty.nix
     ./rofi.nix
-    ./swayosd.nix
-    ./waybar.nix
     ./gpg.nix
     ./noctalia.nix
   ];

@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  name,
   ...
 }:
 
@@ -15,6 +16,7 @@ in
     ../modules/audio.nix
     ../modules/bluetooth.nix
     ../modules/hyprland.nix
+    ../modules/obs.nix
     ../modules/packages.nix
     ../modules/sddm.nix
   ];
@@ -24,7 +26,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Red
-  networking.hostName = settings.hostname;
+  networking.hostName = name;
   networking.networkmanager.enable = true;
 
   # Zona horaria y locale
