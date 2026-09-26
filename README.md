@@ -17,11 +17,11 @@ Modular NixOS configuration using flakes + Home Manager, supporting multiple mac
 └── assets/
 ```
 
-- **hosts/** > per-machine entry points (hardware-configuration.nix + machine-specific imports)
-- **modules/** > system-level (NixOS) modules: audio, bluetooth, hyprland, sddm, gpu-\*
+- **hosts/** > per-machine entry points + shared host configuration
+- **modules/** > system-level NixOS modules: packages, audio, bluetooth, hyprland, sddm, gpu-*
 - **home/** > user-level (Home Manager) modules
-- **dotfiles/** > raw config files (hypr, rofi, waybar, swayosd...), symlinked into `~/.config` via Home Manager
-- **assets/** > where the images/sounds/etc... used on the rice will live
+- **dotfiles/** > raw config files
+- **assets/** > images, sounds, etc...
 
 ## Installing on a new machine
 
@@ -98,8 +98,18 @@ The symlinks should resolve (following the chain) to `~/nixos-config/dotfiles/`.
 
 ### 7. Post-install problems/tips
 
-Installing a new package can be done by going to `hosts/<chosen-folder>/default.nix` and adding a new line on:
-```lua
+System-wide packages are defined in:
+
+    `modules/packages.nix`
+
+To install a new system-wide package, add it to:
+
+    `environment.systemPackages`
+
+inside `modules/packages.nix`.
+
+If a package or configuration is specific to one GPU/host, keep it in the corresponding host-specific module.
+```nix
 environment.systemPackages = with pkgs; [
     neovim
     wget
@@ -118,7 +128,7 @@ If you want to add new dotfiles to reproduce them, you need to do the following
 1. Drag the dotfile to `dotfiles/whateveryouwant`
 2. Add a new .nix file to `home`
 3. Put this on the file:
-```lua
+```nix
 { config, dotfiles, ... }:
 
 {

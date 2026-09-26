@@ -11,32 +11,17 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }@inputs:
-    let
-      settings = import ./config.nix;
-    in
+    { nixpkgs, ... }@inputs:
     {
       nixosConfigurations = {
-
         nvidiagc = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
 
           modules = [
             ./hosts/nvidiagc
-            home-manager.nixosModules.home-manager
-
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
-              home-manager.extraSpecialArgs = { inherit inputs; };
-
-              home-manager.users.${settings.username} = import ./home;
-            }
           ];
         };
 
@@ -45,16 +30,6 @@
 
           modules = [
             ./hosts/amdgc
-            home-manager.nixosModules.home-manager
-
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
-              home-manager.extraSpecialArgs = { inherit inputs; };
-
-              home-manager.users.${settings.username} = import ./home;
-            }
           ];
         };
 
@@ -63,37 +38,8 @@
 
           modules = [
             ./hosts/intelgc
-            home-manager.nixosModules.home-manager
-
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
-              home-manager.extraSpecialArgs = { inherit inputs; };
-
-              home-manager.users.${settings.username} = import ./home;
-            }
           ];
         };
-
-        vmtest = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-
-          modules = [
-            ./hosts/vmtest
-            home-manager.nixosModules.home-manager
-
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
-              home-manager.extraSpecialArgs = { inherit inputs; };
-
-              home-manager.users.${settings.username} = import ./home;
-            }
-          ];
-        };
-
       };
     };
 }

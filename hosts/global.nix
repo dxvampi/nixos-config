@@ -1,17 +1,22 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 let
-  settings = import ../../config.nix;
+  settings = import ../config.nix;
 in
-
 {
   imports = [
-    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.home-manager
 
-    ../../modules/audio.nix
-    ../../modules/bluetooth.nix
-    ../../modules/hyprland.nix
-    ../../modules/sddm.nix
+    ../modules/audio.nix
+    ../modules/bluetooth.nix
+    ../modules/hyprland.nix
+    ../modules/packages.nix
+    ../modules/sddm.nix
   ];
 
   # Bootloader
@@ -19,12 +24,14 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Red
-  networking.hostName = "vmtest";
+  networking.hostName = settings.hostname;
   networking.networkmanager.enable = true;
 
   # Zona horaria y locale
   time.timeZone = "Europe/Madrid";
+
   i18n.defaultLocale = "en_US.UTF-8";
+
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "es_ES.UTF-8";
     LC_IDENTIFICATION = "es_ES.UTF-8";
@@ -43,6 +50,7 @@ in
     layout = "es";
     variant = "";
   };
+
   console.keyMap = "es";
 
   # Escritorio
@@ -55,47 +63,29 @@ in
   users.users.${settings.username} = {
     isNormalUser = true;
     description = settings.username;
-    initialPassword = "test";
+
     extraGroups = [
       "networkmanager"
       "wheel"
-      "libvirtd"
-    ];
-    packages = with pkgs; [
-      kdePackages.kate
     ];
   };
 
-  nixpkgs.config.allowUnfree = true;
-  programs.firefox.enable = true;
-
+  # Nix
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
 
-  environment.systemPackages = with pkgs; [
-    neovim
-    wget
-    git
-    zsh
-    fastfetch
-    eza
-    kitty
-    nautilus
-    librewolf
-    pear-desktop
-    vscodium
-    mpv
-    yazi
-    nixfmt
-    gparted-full
-    filezilla
-    lua-language-server
-    btop
+  # Home Manager
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.backupFileExtension = "backup";
+  home-manager.extraSpecialArgs = {
+    inherit inputs;
+  };
 
-    nerd-fonts.jetbrains-mono
-  ];
+  home-manager.users.${settings.username} = import ../home;
 
+  # Versiones
   system.stateVersion = "26.05";
 }
