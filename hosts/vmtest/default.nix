@@ -11,7 +11,6 @@ in
     ../../modules/audio.nix
     ../../modules/bluetooth.nix
     ../../modules/hyprland.nix
-    ../../modules/gpu-nvidia.nix
     ../../modules/sddm.nix
   ];
 
@@ -20,7 +19,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Red
-  networking.hostName = settings.hostname;
+  networking.hostName = "vmtest";
   networking.networkmanager.enable = true;
 
   # Zona horaria y locale
@@ -63,57 +62,3 @@ in
     ];
     packages = with pkgs; [
       kdePackages.kate
-    ];
-  };
-
-  # Paquetes
-  nixpkgs.config.allowUnfree = true;
-  programs.firefox.enable = true;
-
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
-  programs.obs-studio = {
-    enable = true;
-
-    enableVirtualCamera = true;
-
-    package = (
-      pkgs.obs-studio.override {
-        cudaSupport = true;
-      }
-    );
-
-    plugins = with pkgs.obs-studio-plugins; [
-      obs-vkcapture
-    ];
-  };
-
-  environment.systemPackages = with pkgs; [
-    neovim
-    wget
-    git
-    zsh
-    fastfetch
-    eza
-    kitty
-    nautilus
-    librewolf
-    pear-desktop
-    vscodium
-    mpv
-    yazi
-    nixfmt
-    gparted-full
-    filezilla
-    lua-language-server
-    btop
-    mpv
-
-    nerd-fonts.jetbrains-mono
-  ];
-
-  system.stateVersion = "26.05";
-}

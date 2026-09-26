@@ -76,6 +76,24 @@
           ];
         };
 
+        vmtest = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+
+          modules = [
+            ./hosts/vmtest
+            home-manager.nixosModules.home-manager
+
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "backup";
+              home-manager.extraSpecialArgs = { inherit inputs; };
+
+              home-manager.users.${settings.username} = import ./home;
+            }
+          ];
+        };
+
       };
     };
 }
