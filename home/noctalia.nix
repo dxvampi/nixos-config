@@ -1,4 +1,6 @@
 {
+  config,
+  dotfiles,
   inputs,
   pkgs,
   lib,

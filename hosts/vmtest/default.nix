@@ -55,6 +55,7 @@ in
   users.users.${settings.username} = {
     isNormalUser = true;
     description = settings.username;
+    initialPassword = "test";
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -62,3 +63,39 @@ in
     ];
     packages = with pkgs; [
       kdePackages.kate
+    ];
+  };
+
+  nixpkgs.config.allowUnfree = true;
+  programs.firefox.enable = true;
+
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  environment.systemPackages = with pkgs; [
+    neovim
+    wget
+    git
+    zsh
+    fastfetch
+    eza
+    kitty
+    nautilus
+    librewolf
+    pear-desktop
+    vscodium
+    mpv
+    yazi
+    nixfmt
+    gparted-full
+    filezilla
+    lua-language-server
+    btop
+
+    nerd-fonts.jetbrains-mono
+  ];
+
+  system.stateVersion = "26.05";
+}
