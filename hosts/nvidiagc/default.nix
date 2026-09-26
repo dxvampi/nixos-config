@@ -69,7 +69,27 @@ in
   nixpkgs.config.allowUnfree = true;
   programs.firefox.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  programs.obs-studio = {
+    enable = true;
+
+    enableVirtualCamera = true;
+
+    package = (
+      pkgs.obs-studio.override {
+        cudaSupport = true;
+      }
+    );
+
+    plugins = with pkgs.obs-studio-plugins; [
+      obs-vkcapture
+    ];
+  };
+
   environment.systemPackages = with pkgs; [
     neovim
     wget
@@ -87,7 +107,9 @@ in
     nixfmt
     gparted-full
     filezilla
-    kdePackages.partitionmanager
+    lua-language-server
+    btop
+    mpv
 
     nerd-fonts.jetbrains-mono
   ];

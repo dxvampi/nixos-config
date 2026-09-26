@@ -12,6 +12,7 @@ in
     ./swayosd.nix
     ./waybar.nix
     ./gpg.nix
+    ./noctalia.nix
   ];
 
   _module.args.dotfiles = "/home/${settings.username}/nixos-config/dotfiles";
