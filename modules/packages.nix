@@ -13,6 +13,7 @@
     eza
     btop
     yazi
+    flatpak
 
     # Dev
     vscodium
