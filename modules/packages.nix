@@ -26,7 +26,7 @@
     pear-desktop
     mpv
     filezilla
-    gparted-full
+    vesktop
 
     # KDE
     kdePackages.kate

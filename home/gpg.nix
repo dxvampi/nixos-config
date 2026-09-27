@@ -7,4 +7,8 @@
     enable = true;
     pinentry.package = pkgs.pinentry-rofi;
   };
+
+  programs.zsh.initContent = ''
+    export GPG_TTY="$(tty)"
+  '';
 }
