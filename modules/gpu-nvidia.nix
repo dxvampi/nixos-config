@@ -2,6 +2,9 @@
 
 {
   hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.open = true;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
+  hardware.nvidia.open = false;
+  hardware.nvidia.modesetting.enable = true;
 }

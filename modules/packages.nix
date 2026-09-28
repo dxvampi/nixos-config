@@ -39,6 +39,7 @@
     vesktop
     gnome-disk-utility
     prismlauncher
+    mangohud
 
     # KDE
     kdePackages.kate
