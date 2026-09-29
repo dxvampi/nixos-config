@@ -23,6 +23,8 @@
     btop
     yazi
     mesa-demos
+    unzip
+    ntfs3g
 
     # Dev
     vscodium
