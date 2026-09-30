@@ -19,6 +19,7 @@ in
     ../modules/obs.nix
     ../modules/packages.nix
     ../modules/sddm.nix
+    ../modules/docker.nix
   ];
 
   # Bootloader
