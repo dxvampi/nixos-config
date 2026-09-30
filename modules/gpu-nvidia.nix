@@ -9,7 +9,7 @@
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
-    open = true; # Recomendado para tu RTX 3060
+    open = true;
     package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
 }
