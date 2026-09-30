@@ -3,8 +3,13 @@
 {
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
+
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
-  hardware.nvidia.open = false;
-  hardware.nvidia.modesetting.enable = true;
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    open = true; # Recomendado para tu RTX 3060
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
+  };
 }
